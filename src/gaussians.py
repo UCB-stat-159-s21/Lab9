@@ -1,4 +1,5 @@
 import os
+import sys
 import numpy as np
 import scipy.stats as ss
 import matplotlib.pyplot as plt
@@ -49,4 +50,11 @@ def plot_data_and_generating_distrib(data, loc=0, scale=1, size=250, bins=20, fi
         plt.plot(bin_mids, gaussian(bin_mids, est_loc, est_scale), 'm-', lw=2, label='fit')
     plt.legend()
     if filepath:
+        if not os.path.exists(filepath):
+            os.makedirs(os.path.dirname(filepath))
         plt.savefig(filepath)
+        
+        
+if __name__ == '__main__':
+    data = sim_gauss_data()
+    plot_data_and_generating_distrib(data, fit=True, filepath=sys.argv[1])
