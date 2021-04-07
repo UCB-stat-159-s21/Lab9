@@ -50,7 +50,7 @@ def plot_data_and_generating_distrib(data, loc=0, scale=1, size=250, bins=20, fi
         plt.plot(bin_mids, gaussian(bin_mids, est_loc, est_scale), 'm-', lw=2, label='fit')
     plt.legend()
     if filepath:
-        assert(os.path.exists('/'.join(filepath.split('/')[:-1]))), "Path does not exist!"
+        assert(os.path.exists(os.path.dirname(filepath))), "Path does not exist!"
         plt.savefig(filepath)
         
         
